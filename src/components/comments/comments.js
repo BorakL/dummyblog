@@ -21,6 +21,10 @@ function Comments(props){
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        if(owner===""){
+            alert("You must select a user");
+            return;
+        }
         //funkcija za slanje komentara
         let data = {
             message: message,
@@ -28,11 +32,12 @@ function Comments(props){
             post: props.id
         }
         createComment(data).then(res=>{
-            console.log(res)
+            console.log(res);
+            
         }).catch(err=>{
             console.log(err)
         })
-        console.log("handle submit: ",data)
+        setMessage("");
     }
 
     const selectOwner = (e)=>{
@@ -46,7 +51,7 @@ function Comments(props){
         <Form onSubmit={(e)=>handleSubmit(e)}> 
             <Owners selectOwner={selectOwner}/>
             <FloatingLabel controlId="floatingTextarea2" label="Comment">
-                <Form.Control as="textarea" style={{ height: '100px' }} onChange={e=>setMessage(e.target.value)}/>
+                <Form.Control as="textarea" style={{ height: '100px' }} onChange={e=>setMessage(e.target.value)} value={message} required/>
             </FloatingLabel> 
             <Button type="submit">Add Comment</Button>
         </Form> 
