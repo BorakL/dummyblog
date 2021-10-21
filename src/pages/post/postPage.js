@@ -25,7 +25,7 @@ function PostPage(){
     
     return(
         <>
-        {redirect && <Redirect to="/"/>}
+        {redirect && <Redirect to="/dummyblog"/>}
         {Object.keys(post).length!==0 && !loader ?
         <>
         <Post {...post} styleName={"page"}/>

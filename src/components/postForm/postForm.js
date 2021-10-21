@@ -85,7 +85,7 @@ function PostForm(){
     
     return(
         <>
-        {redirect && <Redirect to="/"/>}
+        {redirect && <Redirect to="/dummyblog"/>}
         {
             loader ? <Loader/>
             : 
@@ -101,7 +101,7 @@ function PostForm(){
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Likes</Form.Label>
-                    <Form.Control type="number" onChange={e=>updateLikes(e.target.value)} placeholder={likes} required/>
+                    <Form.Control type="number" onChange={e=>updateLikes(e.target.value)} placeholder={likes} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>User</Form.Label>
