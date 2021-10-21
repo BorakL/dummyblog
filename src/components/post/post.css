@@ -1,0 +1,79 @@
+.post{  
+    width:350px; 
+    text-align:left; 
+}
+.post:hover{
+    cursor: pointer;
+    -webkit-box-shadow: 3px 2px 11px -6px rgba(0,0,0,0.66);
+    -moz-box-shadow: 3px 2px 11px -6px rgba(0,0,0,0.66);
+    box-shadow: 3px 2px 11px -6px rgba(0,0,0,0.66);
+}
+.post>.card-body>.card-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;  
+} 
+.post>.card-body>.card-title>.ownerName-data{
+    margin-left: 1em;
+}
+.post>.card-body>.card-title>.ownerName-data>.data{
+    font-size: 0.7em;
+    font-weight: 400;
+}
+.post>.card-body>.card-title img{
+    width:calc(3rem + 1vw);
+}
+.post>.card-body>.post-main>.card-img{
+    width: 100%;
+    min-width: calc(10px + 1vw);
+    height: 300px;
+}  
+.post>.card-body>.post-likes{
+    margin:0.5em 0;
+} 
+.post>.card-body>.post-tags>*{
+    margin-right:5px
+}
+.post-edit{
+    display: none;
+}
+
+ 
+
+
+.post.page{
+    width:auto;
+    margin:auto;
+    max-width: var(--container-max-width);
+    margin-bottom:3em;
+}
+.post.page .post-edit{
+    display: block;
+    margin:0.5em auto;
+    text-align: center;
+    font-size:1.5em; 
+}
+/* .post.page .post-button:hover>*{
+    color:rgb(0, 0, 255)
+} */
+.card.page.post:hover{
+    cursor:inherit;
+    box-shadow:none;
+}
+.post.page>.card-body>.post-main{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content:start;
+}   
+.post.page>.card-body>.post-main>.card-img{
+    max-width: 400px;
+    height:auto;
+    margin-right: 1.5em;
+    height:auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .post.page>.card-body>.post-main{
+        flex-direction: column; 
+    }
+}
