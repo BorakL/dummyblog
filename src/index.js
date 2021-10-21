@@ -8,7 +8,7 @@ import { HashRouter } from 'react-router-dom';
 
 
 ReactDOM.render(
-  <HashRouter>
+  <HashRouter basename="/dummyblog">
     <App />
   </HashRouter>,
   document.getElementById('root')

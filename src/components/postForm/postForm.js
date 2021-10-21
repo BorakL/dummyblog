@@ -85,7 +85,7 @@ function PostForm(){
     
     return(
         <>
-        {redirect && <Redirect to="/dummyblog"/>}
+        {redirect && <Redirect to="/"/>}
         {
             loader ? <Loader/>
             : 
