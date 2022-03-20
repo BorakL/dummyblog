@@ -7,7 +7,9 @@ function Comment(props){
         <Row className="comment">
             <Card> 
                 <Card.Body> 
-                    <Card.Title>{props.comment.owner.firstName} <span className="date">{formatDateTime(props.comment.publishDate)}</span></Card.Title> 
+                    <Card.Title>{props.comment.owner.firstName} 
+                        <span className="date">{formatDateTime(props.comment.publishDate)}</span>
+                    </Card.Title> 
                     <Card.Text>{props.comment.message}</Card.Text>
                 </Card.Body>
             </Card>

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import { Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; 
 import Loader from '../../components/loader/loader';
 import Post from '../../components/post/post';
 import { getPosts } from '../../services/services';
+import PostPage from '../post/postPage';
+import './home.css'
 
 
 function Home(){
@@ -11,7 +14,11 @@ function Home(){
     const[page,setPage] = useState(0);
     const[limit,setLimit] = useState(12);
     const[total,setTotal] = useState(1);  
-    const[loader,setLoader] = useState(false);
+    const[loader,setLoader] = useState(false); 
+    const[post,setPost] = useState(null);
+    const[isPostShow,setIsPostShow] = useState(false);
+    let history = useHistory();
+    const[scrollPosition,setScrollPosition] = useState(0);
 
     useEffect(()=>{
         setLoader(true);
@@ -24,48 +31,62 @@ function Home(){
         })
     },[page,limit]) 
 
+    useEffect(() => {
+        window.history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', closePost);
+        return () => {
+          window.removeEventListener('popstate', closePost);  
+        };
+      }, []);
+
     const lastPage = Math.ceil(total/limit)
-
-    const styleList={
-        padding:"3em 0",
-        display:"flex",
-        flexDirection: "row",
-        flexWrap:"wrap",
-        justifyContent:"center",
-        gap:"3em"
+ 
+    const showPost = (post)=>{ 
+        if(!isPostShow){
+            setPost(post); 
+            setIsPostShow(true);
+            setScrollPosition(window.scrollY)
+            window.history.pushState(null, null, post.id);
+        } 
     }
-    const styleLink={
-        padding:"2em 0 1em",
-        display:"flex",
-        justifyContent:"center",
-        fontSize:"1.5em", 
-    }
-
+    const closePost = ()=>{
+        setPost(null);
+        setIsPostShow(false);
+        isPostShow && window.history.back();
+        window.scrollTo(0,scrollPosition)
+    } 
+ 
     return(
     <>
     {
         loader ? <Loader/> :
         <>
-        <div style={styleLink}>
-            <Link to="/create" className="btn-lg">Add New Post</Link> 
+        <div className={`container ${isPostShow && "hideContainer"}`}>
+            <div>
+                <Link to="/create" className="btn-lg">Add New Post</Link> 
+            </div>
+            <div className="postList">
+                {posts.map(post=>
+                    <div key={post.id} onClick={()=>{showPost(post)}}>
+                        <Post key={post.id} {...post}/> 
+                    </div> 
+                )} 
+            </div>
+            <div className="pagination">
+                <Pagination>
+                    <Pagination.First onClick={()=>setPage(0)}/>
+                    <Pagination.Prev onClick={()=>setPage(page-1)} disabled={page===0 ? true : false}/>
+                    <Pagination.Item active>{page+1}</Pagination.Item>
+                    <Pagination.Next onClick={()=>setPage(page+1)} disabled={page===lastPage ? true : false}/>
+                    <Pagination.Last onClick={()=>setPage(lastPage-1)}/>    
+                </Pagination> 
+            </div>
         </div>
-        <div style={styleList}>
-            {posts.map(post=>
-                <Link to={`/${post.id}`} key={post.id} > <Post key={post.id} {...post}/> </Link> 
-            )} 
-        </div>
-        <div style={styleLink}>
-            <Pagination>
-                <Pagination.First onClick={()=>setPage(0)}/>
-                <Pagination.Prev onClick={()=>setPage(page-1)} disabled={page===0 ? true : false}/>
-                <Pagination.Item active>{page+1}</Pagination.Item>
-                <Pagination.Next onClick={()=>setPage(page+1)} disabled={page===lastPage ? true : false}/>
-                <Pagination.Last onClick={()=>setPage(lastPage-1)}/>    
-            </Pagination> 
+        <div>
+            {post && <PostPage post={post} closePost={closePost}/> } 
         </div>
         </>
     }
-    
     </>
     )
 }

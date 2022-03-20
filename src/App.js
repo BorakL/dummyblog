@@ -8,6 +8,7 @@ import { Container, Navbar } from 'react-bootstrap';
 import PostForm from './components/postForm/postForm';
 
 function App() {
+  
   return (
     <div className="App"> 
 

@@ -1,4 +1,4 @@
-.post{  
+/* .post{  
     width:350px; 
     text-align:left; 
 }
@@ -56,7 +56,7 @@
 /* .post.page .post-button:hover>*{
     color:rgb(0, 0, 255)
 } */
-.card.page.post:hover{
+/* .card.page.post:hover{
     cursor:inherit;
     box-shadow:none;
 }
@@ -76,4 +76,50 @@
     .post.page>.card-body>.post-main{
         flex-direction: column; 
     }
+} */ 
+
+.post{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    height: auto;
+    margin:1em;
+    border:1px solid grey;
+    border-radius: 5px;
+    padding:1em;
+    background-color: white;
+}
+.postTitle{
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    margin-bottom: 1em;
+}
+.ownerImg>img{
+    width: 70px;
+    border-radius: 50px;
+}
+.ownerNameData{
+    margin-left: 1em;
+}
+.postMain{
+    display: flex;
+    flex-direction: column;
+} 
+.postMain>img{
+    cursor: pointer;
+}
+.postLikes{
+    margin: 5px 0;
+}
+.postTags{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.postEdit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

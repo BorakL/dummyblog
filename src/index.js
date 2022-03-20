@@ -5,12 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom"
 
 
 ReactDOM.render(
-  <HashRouter basename="/dummyblog">
+  <Router>
     <App />
-  </HashRouter>,
+  </Router>,
   document.getElementById('root')
 );
 
