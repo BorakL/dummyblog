@@ -4,8 +4,7 @@ import { getPost } from '../../services/services';
 import {GrClose} from 'react-icons/gr';
 import './postPage.css';
 
-function PostPage(data=null){  
-    console.log("closePost",data.closePost)
+function PostPage(data=null){   
     const {id} = useParams();
     const[post,setPost]=useState(false)
     const[redirect,setRedirect]=useState(false)  
@@ -19,8 +18,7 @@ function PostPage(data=null){
                 setRedirect(true);
             })
         }
-        else{
-            console.log("ddddata",data) 
+        else{ 
             setPost(data.post)
         } 
     },[id,data])  

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Card, Image} from 'react-bootstrap';
+import { Badge} from 'react-bootstrap';
 import {AiOutlineLike} from 'react-icons/ai';
 import {Link} from 'react-router-dom';
 import { formatDateTime } from '../../utilities/utilities'; 
